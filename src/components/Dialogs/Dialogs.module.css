@@ -10,3 +10,12 @@
 .messages {
   padding: 20px;
 }
+
+.inputBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.textarea {
+}
