@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
@@ -13,24 +13,20 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 
 
-const App = (props) => {
+const App = () => {
   return (
     <div className='app-wrapper'>
-        <Header />
-        <NavBar />
-        <div className='app-wrapper-content'>
-          <Route path="/profile" render={() => <Profile 
-            store={props.store}
-            />} />
-          <Route /*exact*/ path="/dialogs"
-            render={() => <DialogsContainer
-              store={props.store}
-              />} />
-          <Route path="/news" render={() => <News />} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/video" render={() => <Video />} />
-          <Route path="/settings" render={() => <Settings />} />
-        </div>
+      <Header />
+      <NavBar />
+      <div className='app-wrapper-content'>
+        <Route path="/profile" render={() => <Profile />} />
+        <Route /*exact*/ path="/dialogs"
+          render={() => <DialogsContainer />} />
+        <Route path="/news" render={() => <News />} />
+        <Route path="/music" render={() => <Music />} />
+        <Route path="/video" render={() => <Video />} />
+        <Route path="/settings" render={() => <Settings />} />
+      </div>
     </div>
   );
 }
