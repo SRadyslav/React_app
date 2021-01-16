@@ -8,9 +8,9 @@ import Post from './Post/Post.jsx';
 
 const MyPosts = (props) => {
     let postsElements = props.posts
-        .map(posts => <Post message={posts.message} likeCount={posts.likesCount} />);
+        .map(posts => <Post message={posts.message} likeCount={posts.likesCount} key={posts.id} />);
 
-    
+
 
     let onAddPost = () => {
         props.addPost();
@@ -21,14 +21,14 @@ const MyPosts = (props) => {
         props.updateNewPostText(text);
     };
 
-    
+
 
     return (
         <div className={s.myPostsBlock}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea value={props.newPostText} onChange={onPostChange} 
+                    <textarea value={props.newPostText} onChange={onPostChange}
                         placeholder="Enter your post text"
                     />
                 </div>

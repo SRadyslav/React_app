@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './newNews.module.css';
 
-const newNews = (props) => {
+const NewNews = (props) => {
     return(
         <div className={s.item}>
             <img src="https://vjoy.cc/wp-content/uploads/2020/10/prikolnye-avatarki-vk-dlya-parnej_023.jpg"></img>
@@ -13,4 +13,4 @@ const newNews = (props) => {
     );
 }
 
-export default newNews;
+export default NewNews;

@@ -5,7 +5,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 
 
-const Profile = (props) => {
+const Profile = () => {
     return (
         <div className={s.profilePage}>
             <ProfileInfo />
