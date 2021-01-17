@@ -9,7 +9,7 @@ const ProfileInfo = () => {
             <img src='https://vjoy.cc/wp-content/uploads/2020/10/prikolnye-avatarki-vk-dlya-parnej_023.jpg' />
         </div>
         <div className={s.descriptionBlock}>
-            Ava + description
+            description
         </div>
     </div>
     );

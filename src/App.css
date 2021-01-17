@@ -1,6 +1,8 @@
 
-
-.app-wrapper {
+.app-wrapper{
+  background: rgb(152, 218, 233);
+}
+.container {
   display: grid;
   width: 1200px;
   margin: 0 auto;
@@ -16,8 +18,13 @@
 
 .app-wrapper-content{
     grid-area: cont;
-    background: linear-gradient(to left, rgb(58, 24, 37), rgb(19, 8, 83));
+    background: rgb(9, 143, 177);
 }
+
+
+
+
+
 
 
 

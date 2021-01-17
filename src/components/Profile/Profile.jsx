@@ -9,7 +9,9 @@ const Profile = () => {
     return (
         <div className={s.profilePage}>
             <ProfileInfo />
-            <MyPostsContainer className={s.myPosts} />
+            <div className="myPosts">
+            <MyPostsContainer />
+            </div>
         </div>
     );
 }

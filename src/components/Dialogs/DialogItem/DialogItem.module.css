@@ -19,6 +19,12 @@
     border-radius: 50%;
 }
 
+.dialog a:hover {
+    color: rgb(59, 186, 218);
+
+    transition: background 0.1s linear, color 0.1s linear;
+}
+
 a.active {
-    color: rgb(200, 156, 218);
+    color: rgb(59, 186, 218);
 }

@@ -1,6 +1,14 @@
 .profileInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
     width: 100%;
     height: auto;
+}
+
+.profileInfo img {
+    
+    
 }
 
 .descriptionBlock {
