@@ -1,16 +1,15 @@
 import React from 'react';
 import './App.css';
 import { Route } from "react-router-dom";
-
-import Header from './components/Header/Header';
 import NavBar from './components/NavBar/NavBar';
-import Profile from './components/Profile/Profile';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Video from './components/Video/Video';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 
@@ -19,10 +18,10 @@ const App = () => {
   return (
     <div className='app-wrapper'>
     <div className="container">
-        <Header className="header" />
+        <HeaderContainer className="header" />
         <NavBar className="navBar" />
         <div className='app-wrapper-content'>
-          <Route path="/profile" render={() => <Profile />} />
+          <Route path="/profile/:userId?" render={() => <ProfileContainer /> } />
           <Route path="/users" render={() => <UsersContainer />} />
           <Route /*exact*/ path="/dialogs"
             render={() => <DialogsContainer />} />
