@@ -2,53 +2,80 @@ import React from "react";
 import s from "./Users.module.css"
 import userPhoto from "../../assets/images/userPhoto.png"
 import { NavLink } from "react-router-dom";
+import * as axios from "axios"
 
 
 let Users = (props) => {
-    let pagesCount = Math.ceil(props.totalCount/
+    let pagesCount = Math.ceil(props.totalCount /
         props.pageSize);
-let pages =[];
-for(let i = 1; i <= pagesCount; i++) {
-pages.push(i);
-}
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
+    }
 
-    return(
-    <div className={s.users}>
+    return (
+        <div className={s.users}>
             <div className={s.selectPage}>
-            {pages.map(p => {
-                return <span
-                onClick={(e) => {
-                    props.onPageChanged(p);
-                } }
-                className={props.currentPage === p && s.selectedPage}>{p}</span>
-            })}
+                {pages.map(p => {
+                    return <span
+                        onClick={(e) => {
+                            props.onPageChanged(p);
+                        }}
+                        className={props.currentPage === p && s.selectedPage}>{p}</span>
+                })}
             </div>
-                {props.users.map(u => <div key={u.id}>
-                    <span>
-                        <div>
-                        <NavLink to= {"/profile/" + u.id}>
+            {props.users.map(u => <div key={u.id}>
+                <span>
+                    <div>
+                        <NavLink to={"/profile/" + u.id}>
                             <img className={s.usersImg} src={u.photos.small != null ? u.photos.small : userPhoto} />
                         </NavLink>
-                        </div>
-                        <div>
-                            {u.followed
-                                ? <button onClick={() => { props.unfollow(u.id) }} >Unfollow</button>
-                                : <button onClick={() => { props.follow(u.id) }} >Follow</button>}
-                        </div>
+                    </div>
+                    <div>
+                        {u.followed
+                            ? <button disabled= {props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                props.toggleFollowingProgress(true, u.id);
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,  { withCredentials: true, 
+                                // headers: {"API-KEY":"sdfsd-sdfsdf"}
+})
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.unfollow(u.id);
+                                        }
+                                        props.toggleFollowingProgress(false, u.id);
+                                    });
+
+                            }} >Unfollow</button>
+                            : <button disabled= {props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                props.toggleFollowingProgress(true, u.id);
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, { withCredentials: true,
+                                // headers: null
+})
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.follow(u.id);
+                                        }
+                                        props.toggleFollowingProgress(false, u.id);
+                                    });
+
+
+
+                            }} >Follow</button>}
+                    </div>
+                </span>
+                <span>
+                    <span>
+                        <div>{u.name}</div>
+                        <div>{u.status}</div>
                     </span>
                     <span>
-                        <span>
-                            <div>{u.name}</div>
-                            <div>{u.status}</div>
-                        </span>
-                        <span>
-                            <div>{"u.location.city"}</div>
-                            <div>{"u.location.country"}</div>
-                        </span>
+                        <div>{"u.location.city"}</div>
+                        <div>{"u.location.country"}</div>
                     </span>
-                </div>)
-                }
-            </div>
+                </span>
+            </div>)
+            }
+        </div>
     )
 }
 
