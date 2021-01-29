@@ -3,10 +3,10 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem"
 import Message from "./Message/Message"
 import { Redirect } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
 
 
 const Dialogs = (props) => {
-
     let state = props.dialogsPage;
 
     let dialogsElements = state.dialogs
@@ -15,17 +15,10 @@ const Dialogs = (props) => {
     let messagesElements = state.messages
         .map(message => <Message message={message.message} key={message.id} />);
 
-    let sendMessage = () => {
-        props.sendMessageActionCreator();
-    };
-
-    let onMessageChange = (event) => {
-        let text = event.target.value;
-        props.updateNewMessageTextActionCreator(text);
-    };
-
+    const onSubmit = (formData) =>{
+        props.sendMessageActionCreator(formData.newMessageText);
+    }
         if (!props.isAuth) return <Redirect to={"/login"} />
-
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
@@ -33,16 +26,23 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 <div>{messagesElements} </div>
+                
             </div>
             <div className={s.inputBlock}>
-                <textarea className={s.textarea} value={props.newMessageText}
-                    onChange={onMessageChange}
-                    placeholder="Enter your message"
-                />
-                <button onClick={sendMessage}>Send</button>
+            <AddMessageFormRedux onSubmit={onSubmit} />
             </div>
         </div>
     );
 }
 
-export default Dialogs;
+const AddMessageForm = (props) => {
+    return(
+        <form  onSubmit={props.handleSubmit}  >
+            <Field component={"textarea"} name={"newMessageText"} placeholder={"Enter your message"} />
+                <button >Send</button>
+        </form>
+    )
+}
+const AddMessageFormRedux = reduxForm({form:'dialogAddMessageForm'})(AddMessageForm);
+
+export default Dialogs
