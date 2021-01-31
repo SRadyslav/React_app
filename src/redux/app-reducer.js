@@ -1,5 +1,3 @@
-import { stopSubmit } from 'redux-form';
-import { authAPI } from '../api/api';
 import { getAuthUserData } from './auth-reducer';
 
 
@@ -31,10 +29,10 @@ export const initializedSuccess = () => ({
 })
 
 
-export const initializeApp = () =>(dispatch) => {
+export const initializeApp = () => (dispatch) => {
     let promise = dispatch(getAuthUserData());
     Promise.all([promise]).then(()=>{
-        dispatch(initializeApp());
+        dispatch(initializedSuccess()); /*accidentally dispatch InitializeApp instead initializedSuccess and overflow stack*/ 
     })
 }
 

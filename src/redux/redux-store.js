@@ -11,13 +11,14 @@ import appReducer from "./app-reducer";
 
 
 let reducers = combineReducers({
+    app: appReducer,
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
     form: formReducer,
-    app: appReducer,
+    
 })
 
 let store = createStore(reducers,applyMiddleware(thunkMiddleware));

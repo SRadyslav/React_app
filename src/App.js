@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { Route, withRouter } from "react-router-dom";
 import NavBar from './components/NavBar/NavBar';
@@ -11,7 +11,6 @@ import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
-import { getAuthUserData} from "./redux/auth-reducer";
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './redux/app-reducer';
@@ -21,7 +20,7 @@ import Preloader from './components/Common/Preloader/Preloader';
 
 
 
-class App extends React.Component {
+class App extends Component {
   componentDidMount() {
     this.props.initializeApp();
   }
