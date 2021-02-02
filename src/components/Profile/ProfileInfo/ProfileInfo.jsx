@@ -4,17 +4,17 @@ import s from './ProfileInfo.module.css';
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+    if (!profile) {
         return <Preloader />
     }
     else return (
         <div className={s.profileInfo}>
             <div>
-            <img src={props.profile.photos.large} />
+                <img src={profile.photos.large} />
             </div>
             <div className={s.descriptionBlock}>
-                <ProfileStatusWithHooks status={props.status} updateStatus ={props.updateStatus} />
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
             description
         </div>
         </div>

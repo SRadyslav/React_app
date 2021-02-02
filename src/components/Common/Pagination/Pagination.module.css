@@ -1,0 +1,11 @@
+
+.selectPage{
+    font-weight: bold;
+}
+
+.selectPage span {
+    margin: 3px;
+}
+.selectedPage{
+    color:aqua ;
+}
