@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import {
     follow,
     setCurrentPage,
@@ -16,12 +17,12 @@ import Users from "./Users";
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        const {currentPage, pageSize} = this.props;
+        const { currentPage, pageSize } = this.props;
         this.props.getUsers(currentPage, pageSize);
     }
 
     onPageChanged = (pageNumber) => {
-        const {pageSize} = this.props;
+        const { pageSize } = this.props;
         this.props.getUsers(pageNumber, pageSize);
     };
 
@@ -61,4 +62,5 @@ export default compose(
         follow, unfollow, setCurrentPage,
         toggleFollowingProgress, getUsers
     }),
+    withAuthRedirect
 )(UsersContainer)

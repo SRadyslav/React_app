@@ -1,11 +1,38 @@
 
 .selectPage{
     font-weight: bold;
+    cursor: pointer;
 }
+.selectPage button{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: medium;
+    padding: 5px;
+    direction: none;
+    color: honeydew;
+    background-color: transparent;
+    border: .5px solid aqua; 
+    border-radius: 15%;
+    font-weight: bold;
+    cursor: pointer;
+}
+.selectPage button::after{
+    border: .5px solid aqua; 
+}
+.selectPage button:hover{
+    color: black;
+    transition: color 0.2s linear;
+    border: .5 solid transparent;
+    background-color: aqua;
+}
+
+
+
 
 .selectPage span {
     margin: 3px;
 }
-.selectedPage{
+.pageNumber.selectedPage{
     color:aqua ;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: 1px solid aqua;
 }
