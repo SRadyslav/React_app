@@ -7,10 +7,14 @@
 }
 
 .profileInfo img {
-    
-    
+    background: none;
 }
 
 .descriptionBlock {
     padding: 10px;
+}
+
+.mainPhoto{
+    max-width: 300px;
+    height: auto;
 }

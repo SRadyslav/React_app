@@ -1,6 +1,6 @@
-import React, { Component, Suspense} from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, HashRouter } from "react-router-dom";
 import NavBar from './components/NavBar/NavBar';
 import Music from './components/Music/Music';
 import News from './components/News/News';
@@ -9,12 +9,10 @@ import Video from './components/Video/Video';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/Common/Preloader/Preloader';
-import { BrowserRouter } from "react-router-dom";
-import { Provider } from 'react-redux';
 import store from './redux/redux-store';
 import { withSuspense } from './hoc/withSuspense';
 //import ProfileContainer from './components/Profile/ProfileContainer';
@@ -65,11 +63,11 @@ const mapStateToProps= (state) => ({
 const AppContainer = compose( withRouter, connect(mapStateToProps,{initializeApp}))(App);
 
 const MainJSApp = (props) => {
-  return <BrowserRouter>
+  return <HashRouter>
             <Provider store={store} >
                 <AppContainer />
             </Provider>
-        </BrowserRouter>
+        </HashRouter>
 } 
 
 export default MainJSApp;

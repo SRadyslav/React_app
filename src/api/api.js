@@ -11,35 +11,43 @@ const instance = axios.create({
 
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 1) 
-    {
+    getUsers(currentPage = 1, pageSize = 1) {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
                 .then(response => {return response.data});
             },
     
-    follow(userId){
+    follow(userId) {
       return instance.post(`follow/${userId}`,
       )},
 
-    unfollow(userId){
+    unfollow(userId) {
       return instance.delete(`follow/${userId}`,
       )},
 
-      getProfile(userId){
+      getProfile(userId) {
         console.warn('Obsolete method. Please use profileAPI object.')
         return profileAPI.getProfile(userId);
       }
 };
 export const profileAPI = {
-      getProfile(userId){
+      getProfile(userId) {
         return instance.get(`profile/` + userId)
       },
-      getStatus(userId){
+      getStatus(userId) {
         return instance.get('profile/status/' + userId)
       },
-      updateStatus(status){
+      updateStatus(status) {
         return instance.put('profile/status/', {status: status});
       },
+      savePhoto(photoFile) {
+        const formData = new FormData();
+        formData.append("image", photoFile)
+        return instance.put('profile/photo/', formData, {
+          headers: {
+            'Content-Type' : 'multipart/form-data'
+          }
+        });
+      }
 };
 
 export const authAPI = {
