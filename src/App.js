@@ -25,20 +25,20 @@ const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileCo
 
 
 class App extends Component {
-  catchAllUnhandledErrors =(reason, promise) => {
+  catchAllUnhandledErrors = () => {
     alert("Some error occurred");
-    console.error(reason)
   }
   componentDidMount() {
+    
     this.props.initializeApp();
     window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
   }
   render() {
     if (!this.props.initialized) {
-    return <Preloader />
+      return <Preloader />
     }
 
     return (
@@ -47,18 +47,19 @@ class App extends Component {
           <HeaderContainer className="header" />
           <NavBar className="navBar" />
           <div className='app-wrapper-content'>
-          <Switch>
-          <Redirect from="/" to="/profile" />
-            <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)} />
-            <Route path="/users" render={() => <UsersContainer />} />
-            <Route /*exact*/ path="/dialogs"
-              render={ withSuspense(DialogsContainer)} />
-            <Route path="/news" render={() => <News />} />
-            <Route path="/music" render={() => <Music />} />
-            <Route path="/video" render={() => <Video />} />
-            <Route path="/settings" render={() => <Settings />} />
-            <Route path="/login" render={() => <Login />} />
-            <Route path="*" render={() => <div>404 NOT FOUND</div>} />
+            <Switch>
+              <Route path="/profile/:userId?" render={withSuspense(ProfileContainer)} />
+              <Route path="/users" render={() => <UsersContainer />} />
+              <Route path="/dialogs"
+                render={withSuspense(DialogsContainer)} />
+              <Route path="/news" render={() => <News />} />
+              <Route path="/music" render={() => <Music />} />
+              <Route path="/video" render={() => <Video />} />
+              <Route path="/settings" render={() => <Settings />} />
+              <Route path="/login" render={() => <Login />} />
+              <Route exact path="/" render={withSuspense(ProfileContainer)} />
+              <Route exact path='/' render={({ location }) => <Redirect to={location.hash.replace('#', '')} />} />
+              <Route path="*" render={() => <div>404 NOT FOUND</div>} />
             </Switch>
           </div>
         </div>
@@ -67,18 +68,18 @@ class App extends Component {
   }
 }
 
-const mapStateToProps= (state) => ({
+const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-const AppContainer = compose( withRouter, connect(mapStateToProps,{initializeApp}))(App);
+const AppContainer = compose(withRouter, connect(mapStateToProps, { initializeApp }))(App);
 
 const MainJSApp = (props) => {
   return <HashRouter>
-            <Provider store={store} >
-                <AppContainer />
-            </Provider>
-        </HashRouter>
-} 
+    <Provider store={store} >
+      <AppContainer />
+    </Provider>
+  </HashRouter>
+}
 
 export default MainJSApp;

@@ -85,15 +85,10 @@ export const getStatus = (userId) => async (dispatch) => {
     dispatch(setStatus(response.data));
 }
 export const updateStatus = (status) => async (dispatch) => {
-    try{
     const response = await profileAPI.updateStatus(status);
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status));
     }
-} catch(error){
-    //### dispatch something. Show some div with this error.
-}
-
 }
 export const savePhoto = (file) => async (dispatch) => {
     const response = await profileAPI.savePhoto(file);
@@ -106,9 +101,9 @@ export const saveProfile = (profile) => async (dispatch, getState) => {
     const response = await profileAPI.saveProfile(profile);
     if (response.data.resultCode === 0) {
         dispatch(getUserProfile(userId));
-    } 
+    }
     else {
-        dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0]}));
+        dispatch(stopSubmit("edit-profile", { _error: response.data.messages[0] }));
         return Promise.reject(response.data.messages[0]);
     }
 }
