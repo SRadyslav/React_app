@@ -8,12 +8,12 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 const Profile = (props) => {
     return (
         <div className={s.profilePage}>
-            <ProfileInfo isOwner={props.isOwner} 
+            <ProfileInfo saveProfile={props.saveProfile} isOwner={props.isOwner} 
             profile={props.profile} status={props.status} 
             updateStatus={props.updateStatus} 
             savePhoto={props.savePhoto} />
             <div className="myPosts">
-                <MyPostsContainer />
+                <MyPostsContainer  />
             </div>
         </div>
     );
