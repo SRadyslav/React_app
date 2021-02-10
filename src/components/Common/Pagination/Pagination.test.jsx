@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {create} from "react-test-renderer"
 import Pagination from "./Pagination";
 

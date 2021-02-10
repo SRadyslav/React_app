@@ -4,7 +4,6 @@ import s from './ProfileInfo.module.css';
 import style from "../../Common/FormsControls/FormsControls.module.css"
 
 const ProfileDataForm = ({ handleSubmit, profile, error }) => {
-    debugger
     return (
         <form onSubmit={handleSubmit}>
             <div>

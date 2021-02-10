@@ -1,6 +1,5 @@
-import { act } from "react-dom/test-utils";
 
-type InitialStateType = typeof initialState;
+
 let initialState = {
 };
 
@@ -9,4 +8,8 @@ const sidebarReducer = (state=initialState, action:sidebarReducerActionType) =>{
     return(state);
 }
 
-export default sidebarReducer;
+export default sidebarReducer
+
+
+type InitialStateType = typeof initialState;
+

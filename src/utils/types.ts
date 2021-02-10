@@ -1,3 +1,5 @@
+import { AppStateType } from "../redux/redux-store"
+
 export type ProfilePhotoType = {
     large: string | null
     small: string | null
@@ -32,3 +34,5 @@ export type UsersType = {
     status: string | null
     followed: boolean
 }
+
+export type GetStateType = () => AppStateType
