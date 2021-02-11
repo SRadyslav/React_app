@@ -14,7 +14,6 @@ let initialState = {
     ] as Array<PostsType>, 
     profile: null as ProfileType | null,
     status: "" as string,
-    newPostText: ''
 };
 
 
@@ -29,7 +28,6 @@ const profileReducer = (state = initialState, action:ActionsType):InitialStateTy
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ''
             };
         case "NW/PROFILE/SET-USER-PROFILE":
             return {
@@ -56,7 +54,7 @@ const profileReducer = (state = initialState, action:ActionsType):InitialStateTy
     }
 }
 export const actions = {
-    addPostActionCreator: (newPostText:string) => ({type: "NW/PROFILE/ADD-POST", newPostText} as const),
+    addPost: (newPostText:string) => ({type: "NW/PROFILE/ADD-POST", newPostText} as const),
     setUserProfile: (profile:ProfileType) => ({type: "NW/PROFILE/SET-USER-PROFILE", profile} as const),
     setStatus: (status:string) => ({type: "NW/PROFILE/SET-STATUS", status} as const),
     deletePost: (postId:number) => ({type: "NW/PROFILE/DELETE-POST", postId} as const),
@@ -85,7 +83,7 @@ export const savePhoto = (file:File):ThunkType => async (dispatch) => {
 
 export const saveProfile = (profile:ProfileType):ThunkType => 
     async (dispatch, getState) => {
-    const userId = getState().auth.id;
+    const userId = getState().auth.userId;
     const data = await profileAPI.saveProfile(profile);
     if (data.resultCode === 0) {
         if(userId != null){

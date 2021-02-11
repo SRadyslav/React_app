@@ -1,7 +1,12 @@
 import React from 'react';
 import s from './newNews.module.css';
 
-const NewNews = (props) => {
+type PropsType = {
+    likeCount: number
+    message: string
+}
+
+const NewNews: React.FC<PropsType> = (props) => {
     return(
         <div className={s.item}>
             <img src="https://vjoy.cc/wp-content/uploads/2020/10/prikolnye-avatarki-vk-dlya-parnej_023.jpg"></img>

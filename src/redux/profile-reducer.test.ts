@@ -16,12 +16,11 @@ let state = {
     ],
     profile: null,
     status: "",
-    newPostText: ''
 };
 
 test('length of post should be incremented', () => {
     // 1. test data
-    let action = actions.addPostActionCreator("Samurai_way");
+    let action = actions.addPost("Samurai_way");
     
     // 2. action
     let newState = profileReducer(state, action);
@@ -43,7 +42,7 @@ test('after deleting length of messages should be decremented', () => {
 
 test('message of new post should be correct ', () => {
     // 1. test data
-    let action = actions.addPostActionCreator("Samurai_way");
+    let action = actions.addPost("Samurai_way");
     
     // 2. action
     let newState = profileReducer(state, action);

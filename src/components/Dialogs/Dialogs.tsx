@@ -4,8 +4,17 @@ import DialogItem from "./DialogItem/DialogItem"
 import Message from "./Message/Message"
 import { Redirect } from 'react-router-dom';
 import AddMessageFormRedux from "./Message/AddMessageForm"
+import { InitialStateType } from '../../redux/dialogs-reducer';
 
-const Dialogs = (props) => {
+type PropsType = {
+    dialogsPage: InitialStateType
+    sendMessage: (newMessageText: string) => void
+}
+export type NewMessageFormType = {
+    newMessageText: string
+}
+
+const Dialogs: React.FC<PropsType> = (props) => {
     let state = props.dialogsPage;
 
     let dialogsElements = state.dialogs
@@ -14,10 +23,9 @@ const Dialogs = (props) => {
     let messagesElements = state.messages
         .map(message => <Message message={message.message} key={message.id} />);
 
-    const onSubmit = (formData) =>{
-        props.sendMessageActionCreator(formData.newMessageText);
+    const onSubmit = (formData: NewMessageFormType) =>{
+        props.sendMessage(formData.newMessageText);
     }
-        if (!props.isAuth) return <Redirect to={"/login"} />
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

@@ -1,7 +1,12 @@
 import React from 'react';
 import s from './Video.module.css';
 
-const Video = (props) => {
+type PropsType = {
+    likeCount: number
+}
+
+const Video: React.FC<PropsType> = (props) => {
+    debugger
     return(
         <div className={s.item}>
             Video1

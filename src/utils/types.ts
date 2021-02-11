@@ -1,8 +1,8 @@
 import { AppStateType } from "../redux/redux-store"
 
 export type ProfilePhotoType = {
-    large: string | null
-    small: string | null
+    large: string | undefined
+    small: string | undefined
 }
 export type PostsType = {
     id: number
@@ -26,6 +26,7 @@ export type ProfileType = {
     fullName: string
     contacts: ContactsType
     photos: ProfilePhotoType
+    aboutMe: string
 }
 export type UsersType = {
     name: string
