@@ -13,6 +13,9 @@ export const requestUsers = createSelector(requestUsersSelector,
 export const getPageSize = (state: AppStateType) => {
     return state.usersPage.pageSize
 }
+export const getFilter = (state: AppStateType) => {
+    return state.usersPage.filter
+}
 export const getTotalUsersCount = (state: AppStateType) => {
     return state.usersPage.totalCount
 }
@@ -25,3 +28,4 @@ export const getIsFetching = (state: AppStateType) => {
 export const getFollowingInProgress = (state: AppStateType) => {
     return state.usersPage.followingInProgress
 }
+
