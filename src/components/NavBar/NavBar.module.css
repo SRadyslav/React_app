@@ -6,7 +6,7 @@
 
 .item {
     font-size: 24px;
-    color: honeydew;
+    color: black;
     font-family: Georgia, "Times New Roman", Times, serif;
     font-weight: 700;
     text-align: center;
@@ -18,7 +18,7 @@
 
 .item a {
     text-decoration: none;
-    color: honeydew;
+    color: black;
     position: relative;
 }
 

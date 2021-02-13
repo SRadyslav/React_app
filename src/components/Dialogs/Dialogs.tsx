@@ -31,7 +31,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
             <div className={s.dialogsItems}>
                 {dialogsElements}
             </div>
-            <div className={s.messages}>
+            <div className={s.messages} style={{ height: '615px', overflowY: 'auto'}}>
                 <div>{messagesElements} </div>
                 
             </div>

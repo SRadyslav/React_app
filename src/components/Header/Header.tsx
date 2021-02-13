@@ -1,24 +1,51 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Layout, Menu, Row, Col, Button } from 'antd';
+import Avatar from 'antd/lib/avatar/avatar';
+import { useDispatch, useSelector } from 'react-redux';
+import { getIsAuth, getLogin, getProfilePhoto } from '../../redux/auth-selectors';
+import { logout } from '../../redux/auth-reducer';
 import s from './Header.module.css';
 
-export type PropsType = {
-    isAuth: boolean
-    logout: () => void
-    login: string | null
+
+
+
+export const Header: React.FC = () => {
+const { Header} = Layout;
+
+const  small  = useSelector(getProfilePhoto)
+const isAuth = useSelector(getIsAuth)
+const login = useSelector(getLogin)
+const dispatch = useDispatch()
+const logoutCallback = () => {
+    dispatch(logout())
 }
 
-const Header: React.FC<PropsType> = (props) => {
+
     return (
-        <header className={s.header}>
-            <img src='https://pngimg.com/uploads/circle/circle_PNG50.png' />
-            <div className={s.loginBlock}>
-                {props.isAuth 
-                    ? <div>{props.login} <button onClick={props.logout} >Log out</button> </div>
-                    : <NavLink className={s.navLink} to="/login" >Login</NavLink>}
-            </div>
-        </header>
-    );
+        <Header className="header">
+        <Row>
+            <Col span={1}>
+            <img className={s.headerLogo} src='https://pngimg.com/uploads/circle/circle_PNG50.png' />
+            </Col>
+            <Col span={19}>
+                <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+                <Menu.Item key="1"><Link to="/developers"> Developers </Link></Menu.Item>
+                </Menu>
+            </Col>
+            {isAuth 
+                ? <> <Col span={1}>
+                        <Avatar alt={login || ''} style={{ backgroundColor: '#87d068' }} src={small} />
+                        
+                    </Col>
+                    <Col span={3}>
+                        <Button onClick={logoutCallback} >Log out</Button>
+                    </Col> </>
+                : <Col span={4}> <Button> <Link  to="/login" >Login</Link> </Button> </Col>
+            }
+        </Row>      
+    </Header>
+    )
 }
 
-export default Header; 
+

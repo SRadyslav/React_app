@@ -1,6 +1,8 @@
 .users{
 margin: 20px;
-color: ghostwhite;
+color: #65C9FF;
+font-weight: bold;
+font-size: medium;
 }
 
 .usersImg {
