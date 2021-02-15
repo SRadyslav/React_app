@@ -1,14 +1,14 @@
 import React from 'react';
-import { ChatMessageType } from '../../../pages/Chat/ChatPage';
+import { ChatMessageAPIType } from '../../../api/chat-api';
 import s from "./Message.module.css"
 
 
 
 type PropsType = {
     message?: string
-    chatMessage?: ChatMessageType
+    chatMessage?: ChatMessageAPIType
 }
-const Message: React.FC<PropsType> = (props) => {
+const Message: React.FC<PropsType> = React.memo((props) => {
     
     return (
     <div className={s.message}>
@@ -20,7 +20,7 @@ const Message: React.FC<PropsType> = (props) => {
         <hr/>
     </div>
     )
-}
+})
 
 
 export default Message;
