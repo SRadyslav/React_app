@@ -39,7 +39,7 @@ export function createField<FormKeysType extends string>(placeholder:string | un
 return <div>
     <Field placeholder={placeholder} name={name}
         component={component} validate={validate}
-        {...props} /> {text}
+        {...props} /> {text} 
 </div>}
 
 export type GetStringKeys<T> = Extract<keyof T, string> 

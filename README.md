@@ -1,4 +1,4 @@
-# Social network
+# Samurai social network
 
 Repository is deployed on [GitHubPages](https://sradyslav.github.io/React_app/#/login)
 - Email : `free@samuraijs.com`

@@ -2,10 +2,6 @@ import React, { Component} from 'react';
 import 'antd/dist/antd.css'
 import  './App.css';
 import { Route, withRouter, HashRouter, Switch, Redirect, Link } from "react-router-dom";
-import Music from './components/Music/Music';
-import News from './components/News/News';
-import Settings from './components/Settings/Settings';
-import Video from './components/Video/Video';
 import {UsersPage} from './components/Users/UsersPage';
 import {Login} from './components/Login/Login';
 import { connect, Provider } from 'react-redux';
@@ -15,7 +11,7 @@ import Preloader from './components/Common/Preloader/Preloader';
 import store, { AppStateType } from './redux/redux-store';
 import { withSuspense } from './hoc/withSuspense';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { UserOutlined, LaptopOutlined } from '@ant-design/icons';
 import { Header } from './components/Header/Header';
 
 
@@ -37,7 +33,7 @@ const SuspendedChatPage = withSuspense(ChatPage)
 
 class App extends Component<MapPropsType &  DispatchPropsType> {
   catchAllUnhandledErrors = (e: PromiseRejectionEvent) => {
-    alert("Some error occurred");
+    console.error('some Error');
   }
   componentDidMount() {
     
@@ -65,8 +61,8 @@ class App extends Component<MapPropsType &  DispatchPropsType> {
         <Sider className="site-layout-background" width={200}>
           <Menu
             mode="inline"
-            //defaultSelectedKeys={['1']}
-            //defaultOpenKeys={['sub1']}
+            defaultSelectedKeys={['1']}
+            defaultOpenKeys={['sub1']}
             style={{ height: '100%' }}
           >
 
@@ -75,20 +71,10 @@ class App extends Component<MapPropsType &  DispatchPropsType> {
             <SubMenu key="sub1" icon={<UserOutlined />} title="My Profile">
               <Menu.Item key="1"><Link to="/profile" > Profile </Link></Menu.Item>
               <Menu.Item key="2"><Link to="/dialogs" > Message </Link></Menu.Item>
-              <Menu.Item key="3">option3</Menu.Item>
-              <Menu.Item key="4">option4</Menu.Item>
             </SubMenu>
-            <SubMenu key="sub2" icon={<LaptopOutlined />} title="Developers">
+            <SubMenu key="sub2" icon={<LaptopOutlined />} title="Global">
               <Menu.Item key="5"><Link to="/developers"> Developers </Link></Menu.Item>
-              <Menu.Item key="6">option6</Menu.Item>
-              <Menu.Item key="7">option7</Menu.Item>
-              <Menu.Item key="8">option8</Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
-              <Menu.Item key="9"><Link to="/Chat"> Main Chat </Link></Menu.Item>
-              <Menu.Item key="10">option10</Menu.Item>
-              <Menu.Item key="11">option11</Menu.Item>
-              <Menu.Item key="12">option12</Menu.Item>
+              <Menu.Item key="6"><Link to="/Chat"> Main Chat </Link></Menu.Item>
             </SubMenu>
           </Menu>
         </Sider>
@@ -97,13 +83,8 @@ class App extends Component<MapPropsType &  DispatchPropsType> {
                 <Route path="/profile/:userId?" render={() => <SuspendedProfile /> } />
                 <Route path="/developers" render={() => <UsersPage pageTitle={'Samurai'} /> } />
                 <Route path="/dialogs" render={() => <SuspendedDialogs /> } />
-                <Route path="/news" render={() => <News />} />
-                <Route path="/music" render={() => <Music likeCount={10} />} />
-                <Route path="/video" render={() => <Video  likeCount={1} />} />
-                <Route path="/settings" render={() => <Settings />} />
                 <Route path="/login" render={() => <Login />} />
                 <Route path="/Chat" render={() => <SuspendedChatPage />} />
-
 
                 <Route exact path="/" render={() => <SuspendedProfile /> } />
                 <Route exact path='/' render={({ location }) => <Redirect to={location.hash.replace('#', '')} />} />
@@ -114,30 +95,6 @@ class App extends Component<MapPropsType &  DispatchPropsType> {
     </Content>
     <Footer style={{ textAlign: 'center' }}>Samurai Social Network ©2021 Created by RadySlav</Footer>
   </Layout>
-
-
-
-      // <div className='app-wrapper'>
-      //   <div className="container">
-      //     <HeaderContainer />
-      //     <NavBar />
-      //     <div className='app-wrapper-content'>
-      //       <Switch>
-      //         <Route path="/profile/:userId?" render={() => <SuspendedProfile /> } />
-      //         <Route path="/users" render={() => <UsersPage pageTitle={'Samurai'} /> } />
-      //         <Route path="/dialogs" render={() => <SuspendedDialogs /> } />
-      //         <Route path="/news" render={() => <News />} />
-      //         <Route path="/music" render={() => <Music likeCount={10} />} />
-      //         <Route path="/video" render={() => <Video  likeCount={1} />} />
-      //         <Route path="/settings" render={() => <Settings />} />
-      //         <Route path="/login" render={() => <Login />} />
-      //         <Route exact path="/" render={() => <SuspendedProfile /> } />
-      //         <Route exact path='/' render={({ location }) => <Redirect to={location.hash.replace('#', '')} />} />
-      //         <Route path="*" render={() => <div>404 NOT FOUND</div>} />
-      //       </Switch>
-      //     </div>
-      //   </div>
-      // </div>
     );
   }
 }
