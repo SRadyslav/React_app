@@ -6,6 +6,20 @@
     height: auto;
 }
 
+.avatarDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatarChange {
+    opacity: 0;
+}
+.avatarDiv:hover .avatarChange {
+    opacity: 1;
+} 
+
+
+
 .profileInfo img {
     background: none;
 }
@@ -20,6 +34,5 @@
 }
 
 .contacts{
-    
     padding-left: 1ch;
 }

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FilterType, getUsers, follow, unfollow } from "../../redux/users-reducer";
 import { getCurrentPage, getFilter, getFollowingInProgress, getPageSize, getTotalUsersCount, requestUsers } from "../../redux/users-selectors";
-import Pagination from "../Common/Pagination/Pagination";
+// import Pagination from "../Common/Pagination/Pagination";
+import { Pagination } from 'antd';
 import User from "./User";
 import s from "./Users.module.css";
 import { UsersSearchForm } from "./UsersSearchForm";
@@ -78,16 +79,19 @@ export const Users:React.FC<PropsType> = () => {
     }
 
 
-
     return (
         <div className={s.users}>
             <UsersSearchForm onFilterChanged = {onFilterChanged} />
 
-            <Pagination currentPage={currentPage} onPageChanged={onPageChanged} totalCount={totalCount} pageSize={pageSize} />
+            {/* <Pagination currentPage={currentPage} onPageChanged={onPageChanged} totalCount={totalCount} pageSize={pageSize} /> */}
+            <Pagination defaultCurrent={1} total={totalCount} current={currentPage} onChange={onPageChanged} />
             <div>
                 {users.map(u => <User user={u} key={u.id} followingInProgress={followingInProgress} unfollow={unfollow_} follow={follow_} />
                 )}
             </div>
         </div>
     )
+
+    
 }
+

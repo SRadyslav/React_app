@@ -7,7 +7,7 @@ type PropsType = {
     name: string
 }
 const DialogItem: React.FC<PropsType> = (props) => {
-    let path= "/dialogs/1" + props.id;
+    let path= "/dialogs/" + props.id;
     return (
         <div className={s.dialog}>
                     <NavLink to={path} activeClassName={s.active}> {props.name} </NavLink>

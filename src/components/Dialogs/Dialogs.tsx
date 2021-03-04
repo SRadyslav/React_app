@@ -2,9 +2,9 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem"
 import Message from "./Message/Message"
-import { Redirect } from 'react-router-dom';
 import AddMessageFormRedux from "./Message/AddMessageForm"
 import { InitialStateType } from '../../redux/dialogs-reducer';
+import { Route } from 'react-router-dom';
 
 type PropsType = {
     dialogsPage: InitialStateType
@@ -32,7 +32,8 @@ const Dialogs: React.FC<PropsType> = (props) => {
                 {dialogsElements}
             </div>
             <div className={s.messages} style={{ height: '615px', overflowY: 'auto'}}>
-                <div>{messagesElements} </div>
+                <div>{state.dialogs.map(d=>
+                    <Route  path={`/dialogs/${d.id}`}> {messagesElements}</Route>)} </div>
                 
             </div>
             <div className={s.inputBlock}>

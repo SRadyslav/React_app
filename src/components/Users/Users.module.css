@@ -1,23 +1,23 @@
 .users{
-margin: 20px;
-color: #65C9FF;
 font-weight: bold;
 font-size: medium;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+}
+
+.PhotoButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .usersImg {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-}
-
-.selectPage{
-    font-weight: bold;
-}
-
-.selectPage span {
-    margin: 3px;
-}
-.selectedPage{
-    color:aqua ;
 }

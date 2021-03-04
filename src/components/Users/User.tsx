@@ -15,8 +15,8 @@ type PropsType = {
 
 const User: React.FC<PropsType> = ({user, ...props}) => {
     return (
-        <div>
-            <span>
+        <div className = {s.user}>
+            <div className={s.PhotoButton}>
                 <div>
                     <NavLink to={"/profile/" + user.id}>
                         <img className={s.usersImg} src={user.photos.small != null ? user.photos.small : userPhoto} />
@@ -31,17 +31,17 @@ const User: React.FC<PropsType> = ({user, ...props}) => {
                             onClick={() => { props.follow(user.id); }} >
                             Follow</button>}
                 </div>
-            </span>
-            <span>
+            </div>
+            <div>
                 <span>
                     <div>{user.name}</div>
-                    <div>{user.status}</div>
+                    <div>{user.status ? user.status : "The user was too lazy and did not leave the status"}</div>
                 </span>
                 <span>
-                    <div>{"user.location.city"}</div>
-                    <div>{"user.location.country"}</div>
+                    {/* <div>{"user.location.city"}</div>
+                    <div>{"user.location.country"}</div> */}
                 </span>
-            </span>
+            </div>
         </div>)
 }
 
