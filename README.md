@@ -4,6 +4,7 @@ Repository is deployed on [GitHubPages](https://sradyslav.github.io/React_app/#/
 - Email : `free@samuraijs.com`
 - Password : `free`
 > This is guest account so it have limit to send `post, put, delete` requests. And if you'll spam actions you'll have got some error.
+>If you have infinite loader at the start, so try to use VPN(Russia, Belarus), because API server located at ".ru" host.
 
 ## Available Scripts
 
